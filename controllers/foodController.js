@@ -1,7 +1,7 @@
 import FoodModel from "../models/foodModel.js";
 import fs from "fs"
 
-// add food item
+
 const foodController = {
     addFood : async(req, res)=>{
         try {
@@ -39,11 +39,10 @@ const foodController = {
     },
     removeFood : async (req, res) =>{
         try {
-            const food = await FoodModel.findById(req.params.id) // here body or params 
-
+            const food = await FoodModel.findById(req.body.id) 
             fs.unlink(`uploads/${food.image}`, () =>{})
 
-            await FoodModel.findByIdAndDelete(req.params.id)
+            await FoodModel.findByIdAndDelete(req.body.id)  
             res.status(200).json({success: true, message: `This food has  deleted successfully`})
         } catch (error) {
             console.error(error)
