@@ -8,8 +8,8 @@
         "node": "20.x"
     },
     "scripts": {
-        "server": "nodemon server.js",
-        "dev": "node --watch --env-file=.env server.js",
+        "start": "nodemon server.js",
+        "server": "nodemon --watch --env-file=.env server.js",
         "format": "prettier --write ./"
     },
     "keywords": [],
