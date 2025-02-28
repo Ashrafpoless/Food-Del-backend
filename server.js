@@ -15,9 +15,10 @@ import orderRouter from "./routes/orderRoute.js";
 // app config, initialize express
 const app = express();
 
+//config file
+dotenv.config()
 
 // set port
-dotenv.config()
 const PORT = process.env.PORT || 5000;
 
 // middleware,, parse body and cookies
