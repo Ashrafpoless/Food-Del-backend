@@ -7,6 +7,7 @@ const orderRouter = express.Router()
 
 
 orderRouter.post("/place",authMiddleware ,orderController.placeOrder);
-orderRouter.post("/verify", orderController.verifyOrder)
+orderRouter.post("/verify", orderController.verifyOrder);
+orderRouter.post("/userorders",authMiddleware ,orderController.getUserOrders);
  
 export default orderRouter;

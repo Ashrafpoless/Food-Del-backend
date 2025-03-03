@@ -2,7 +2,7 @@ import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
 import dotenv from "dotenv";
-import { verify } from "jsonwebtoken";
+
 
 dotenv.config();
 
@@ -72,7 +72,17 @@ const orderController = {
             console.error(error.message);
             return res.status(500).json({ success: false, message: error.message });
         }
-    }
+    },
+    // user order for frontend
+    getUserOrders: async(req, res) =>{
+        try {
+            const orders = await orderModel.find({userId: req.body.user.id}).sort({createdAt: -1});
+            res.status(200).json({ success: true, data: orders });
+        } catch (error) {
+            console.error(error.message);
+            return res.status(500).json({ success: false, message: error.message });
+        }
+    },
 };
 
 export default orderController;
