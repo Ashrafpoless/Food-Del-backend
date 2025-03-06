@@ -25,11 +25,18 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
  
-
+const allowedOrigins = [process.env.FRONTEND_URL, process.env.ADMIN_URL];
 
 app.use(cors({
-    origin: process.env.FRONTEND_URL,  // Allow this specific origin
-    methods: 'GET,POST,PUT,DELETE',   // Specify allowed HTTP methods
+   // origin: process.env.FRONTEND_URL,  // Allow this specific origin
+   origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+    } else {
+        callback(new Error('Not allowed by CORS'));
+    }
+}, 
+   methods: 'GET,POST,PUT,DELETE',   // Specify allowed HTTP methods
     credentials: true                // Enable sending cookies with requests
 }))
 

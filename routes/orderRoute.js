@@ -9,5 +9,7 @@ const orderRouter = express.Router()
 orderRouter.post("/place",authMiddleware ,orderController.placeOrder);
 orderRouter.post("/verify", orderController.verifyOrder);
 orderRouter.post("/userorders",authMiddleware ,orderController.getUserOrders);
- 
+orderRouter.get("/list", orderController.listOrder);
+orderRouter.post("/status", orderController.updateOrderStatus);
+
 export default orderRouter;

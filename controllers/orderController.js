@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEYY)
 
 
 
@@ -73,16 +73,37 @@ const orderController = {
             return res.status(500).json({ success: false, message: error.message });
         }
     },
-    // user order for frontend
+    // user order for user (frontend)
     getUserOrders: async(req, res) =>{
         try {
-            const orders = await orderModel.find({userId: req.body.user.id}).sort({createdAt: -1});
+            const orders = await orderModel.find({userId: req.body.userId});
             res.status(200).json({ success: true, data: orders });
         } catch (error) {
             console.error(error.message);
             return res.status(500).json({ success: false, message: error.message });
         }
     },
+    //  order list for admin (admin panel)
+    listOrder: async(req, res) =>{
+        try {
+            const orders = await orderModel.find({});
+            res.status(200).json({ success: true, data: orders });
+        } catch (error) {
+            console.error(error.message);
+            return res.status(500).json({ success: false, message: error.message });
+        }
+    },
+    // api updating order status
+    updateOrderStatus: async(req, res) =>{
+        try {
+            await orderModel.findByIdAndUpdate(req.body.orderId, {status: req.body.status});
+            res.status(200).json({ success: true, message: "Order status updated" });
+        } catch (error) {
+            console.error(error.message);
+            return res.status(500).json({ success: false, message: error.message });
+        }
+    }
+
 };
 
 export default orderController;
