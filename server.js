@@ -30,14 +30,15 @@ const allowedOrigins = [process.env.FRONTEND_URL, process.env.ADMIN_URL];
 app.use(
     cors({
         // Allow this specific origin
-        origin: function (origin, callback) {
+        origin:'*', 
+        /*function (origin, callback) {
             if (!origin || allowedOrigins.includes(origin)) {
                 callback(null, true);
             } else {
                 console.error("Blocked by CORS: ", origin);
                 callback(new Error('Not allowed by CORS'));
             }
-        },
+        },*/
         methods: 'GET,POST,PUT,DELETE', // Specify allowed HTTP methods
         credentials: true // Enable sending cookies with requests
     })
