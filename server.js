@@ -29,7 +29,7 @@ const allowedOrigins = [process.env.FRONTEND_URL, process.env.ADMIN_URL];
 
 app.use(
     cors({
-        // origin: process.env.FRONTEND_URL,  // Allow this specific origin
+        // Allow this specific origin
         origin: function (origin, callback) {
             if (!origin || allowedOrigins.includes(origin)) {
                 callback(null, true);
