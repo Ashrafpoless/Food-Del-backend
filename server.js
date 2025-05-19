@@ -27,21 +27,11 @@ app.use(express.urlencoded({ extended: true }));
 
 const allowedOrigins = [https://food-delivery-alpha-eight.vercel.app/, https://food-del-admin-pied.vercel.app/];
 
-app.use(
-    cors({
-        // Allow this specific origin
-        origin:function (origin, callback) {
-            if (!origin || allowedOrigins.includes(origin)) {
-                callback(null, true);
-            } else {
-                console.error("Blocked by CORS: ", origin);
-                callback(new Error('Not allowed by CORS'));
-            }
-        },
-        methods: 'GET,POST,PUT,DELETE', // Specify allowed HTTP methods
-        credentials: true // Enable sending cookies with requests
-    })
-);
+app.use(cors({
+  origin: 'https://food-delivery-alpha-eight.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 // dc connection
 connectDB();
