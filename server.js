@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const allowedOrigins = [process.env.FRONTEND_URL, process.env.ADMIN_URL];
+const allowedOrigins = [https://food-delivery-alpha-eight.vercel.app/, https://food-del-admin-pied.vercel.app/];
 
 app.use(
     cors({
