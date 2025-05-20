@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.use(cors({
-  origin: 'https://food-del-frontend-uwr9.onrender.com',
+  origin: 'https://food-delivery-alpha-eight.vercel.app/',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
